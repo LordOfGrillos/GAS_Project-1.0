@@ -6,6 +6,7 @@
 #include "AttributeSet.h"
 #include "AbilitySystemComponent.h"
 #include "GameplayEffectExtension.h"
+#include "Data/AttributeInfo.h"
 #include "AuraAttributeSet.generated.h"
 
 #define ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \
@@ -48,6 +49,9 @@ struct FEffectProperties
 	ACharacter* TargetCharacter = nullptr;
 };
 
+//typedef TBaseStaticDelegateInstance<FGameplayAttribute(), FDefaultDelegateUserPolicy>::FFuncPtr FAttributeFuncPtr;
+template<class T>
+using TStaticFuncPtr	= typename TBaseStaticDelegateInstance<T, FDefaultDelegateUserPolicy>::FFuncPtr;
 
 /**
  * 
@@ -63,6 +67,8 @@ public:
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
 
+	TMap<FGameplayTag, TStaticFuncPtr<FGameplayAttribute()>> TagsToAttributes;
+	
 	/*
 	 * Primary Attributes
 	 */
@@ -155,14 +161,6 @@ public:
 	FGameplayAttributeData AttackSpeed;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, AttackSpeed);
 
-	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Vigor, Category = "Primary Attributes")
-	FGameplayAttributeData PlayerMovementSpeed;
-	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, PlayerMovementSpeed);
-
-    UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes")
-	FGameplayAttributeData AreaDamage;
-	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, AreaDamage);
-
     UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes") // Increases the duration of crowd control effects
 	FGameplayAttributeData CrowdControlDuration;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, CrowdControlDuration);
@@ -236,12 +234,6 @@ public:
 
 	UFUNCTION()
 	void OnRep_AttackSpeed(const FGameplayAttributeData& OldAttackSpeed) const;
-
-	UFUNCTION()
-	void OnRep_PlayerMovementSpeed(const FGameplayAttributeData& OldPlayerMovementSpeed) const;
-
-	UFUNCTION()
-	void OnRep_AreaDamage(const FGameplayAttributeData& OldAreaDamage) const;
 
 	UFUNCTION()
 	void OnRep_CrowdControlDuration(const FGameplayAttributeData& OldCrowdControlDuration) const;

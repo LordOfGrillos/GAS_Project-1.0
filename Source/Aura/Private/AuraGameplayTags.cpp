@@ -67,10 +67,6 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 		FName("Attributes.Secondary.ManaRegen"),
 		FString("Increases mana regeneration")
 		);
-	GameplayTags.Attributes_Secondary_MovementSpeed = UGameplayTagsManager::Get().AddNativeGameplayTag(
-		FName("Attributes.Secondary.MovementSpeed"),
-		FString("Increases movement speed")
-		);
 	GameplayTags.Attributes_Secondary_CooldownReduction = UGameplayTagsManager::Get().AddNativeGameplayTag(
 		FName("Attributes.Secondary.CooldownReduction"),
 		FString("Reduces ability cooldowns")
@@ -87,10 +83,6 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 		FName("Attributes.Secondary.MaxMana"),
 		FString("Increases maximum mana")
 		);
-	GameplayTags.Attributes_Secondary_AreaDamage = UGameplayTagsManager::Get().AddNativeGameplayTag(
-		FName("Attributes.Secondary.AreaDamage"),
-		FString("Increases area damage")
-		);
 	GameplayTags.Attributes_Secondary_DamageOverTime = UGameplayTagsManager::Get().AddNativeGameplayTag(
 		FName("Attributes.Secondary.DamageOverTime"),
 		FString("Increases damage over time")
@@ -98,5 +90,31 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 	GameplayTags.Attributes_Secondary_CrowdControlDuration = UGameplayTagsManager::Get().AddNativeGameplayTag(
 		FName("Attributes.Secondary.CrowdControlDuration"),
 		FString("Increases crowd control duration")
+		);
+
+	// Input Tags
+	GameplayTags.InputTag_LMB = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.LMB"),
+		FString("Left Mouse Button")
+		);
+	GameplayTags.InputTag_RMB = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.RMB"),
+		FString("Right Mouse Button")
+		);
+	GameplayTags.InputTag_1 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.1"),
+		FString("Input tag for 1 key")
+		);
+	GameplayTags.InputTag_2 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.2"),
+		FString("Input tag for 2 key")
+		);
+	GameplayTags.InputTag_3 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.3"),
+		FString("Input tag for 3 key")
+		);
+	GameplayTags.InputTag_4 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.4"),
+		FString("Input tag for 4 key")
 		);
 }

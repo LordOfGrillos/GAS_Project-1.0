@@ -2,7 +2,7 @@
 
 
 #include "AbilitySystem/AuraAttributeSet.h"
-
+#include "AuraGameplayTags.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "GameFramework/Character.h"
 #include "GameplayEffectExtension.h"
@@ -10,7 +10,29 @@
 
 UAuraAttributeSet::UAuraAttributeSet()
 {
-	
+	const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
+
+	/* Primary Attributes */
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Strength, GetStrengthAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Intelligence, GetIntelligenceAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Resilience, GetResilienceAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Vigor, GetVigorAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Dexterity, GetDexterityAttribute);
+	//TagsToAttributes.Add(GameplayTags.Attributes_Primary_CrowdControl, GetCrowdControlAttribute);
+
+	/* Secondary Attributes */
+	TagsToAttributes.Add(GameplayTags.Attributes_Secondary_Armor, GetArmorAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Secondary_ArmorPenetration, GetArmorPenetrationAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Secondary_BlockChance, GetBlockChanceAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Secondary_CriticalHitChance, GetCriticalHitChanceAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Secondary_CriticalHitDamage, GetCriticalHitDamageAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Secondary_CriticalHitResistance, GetCriticalHitResistanceAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Secondary_HealthRegen, GetHealthRegenAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Secondary_ManaRegen, GetManaRegenAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Secondary_CooldownReduction, GetCooldownReductionAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Secondary_AttackSpeed, GetAttackSpeedAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Secondary_CrowdControlDuration, GetCrowdControlDurationAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Secondary_DamageOverTime, GetDamageOverTimeAttribute);
 }
 
 void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
@@ -29,7 +51,6 @@ void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<class FLifetimePropert
 	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Resilience, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Vigor, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Dexterity, COND_None, REPNOTIFY_Always);
-	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, CrowdControl, COND_None, REPNOTIFY_Always);
 
 	// Secondary Attributes
 	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Armor, COND_None, REPNOTIFY_Always);
@@ -42,10 +63,8 @@ void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<class FLifetimePropert
 	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, ManaRegen, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, CooldownReduction, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, AttackSpeed, COND_None, REPNOTIFY_Always);
-	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, PlayerMovementSpeed, COND_None, REPNOTIFY_Always);
-	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, AreaDamage, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, CrowdControlDuration, COND_None, REPNOTIFY_Always);
-	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, DamageOverTime, COND_None, REPNOTIFY_Always); //15
+	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, DamageOverTime, COND_None, REPNOTIFY_Always); //14
 }
 
 void UAuraAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
@@ -164,7 +183,7 @@ void UAuraAttributeSet::OnRep_Dexterity(const FGameplayAttributeData& OldDexteri
 
 void UAuraAttributeSet::OnRep_CrowdControl(const FGameplayAttributeData& OldCrowdControl) const
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, CrowdControl, OldCrowdControl);
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, CrowdControl, OldCrowdControl);
 }
 
 // Secondary Attributes
@@ -217,16 +236,6 @@ void UAuraAttributeSet::OnRep_CooldownReduction(const FGameplayAttributeData& Ol
 void UAuraAttributeSet::OnRep_AttackSpeed(const FGameplayAttributeData& OldAttackSpeed) const
 {
     GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, AttackSpeed, OldAttackSpeed);
-}
-
-void UAuraAttributeSet::OnRep_PlayerMovementSpeed(const FGameplayAttributeData& OldPlayerMovementSpeed) const
-{
-	GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, PlayerMovementSpeed, OldPlayerMovementSpeed);
-}
-
-void UAuraAttributeSet::OnRep_AreaDamage(const FGameplayAttributeData& OldAreaDamage) const
-{
-    GAMEPLAYATTRIBUTE_REPNOTIFY(UAuraAttributeSet, AreaDamage, OldAreaDamage);
 }
 
 void UAuraAttributeSet::OnRep_CrowdControlDuration(const FGameplayAttributeData& OldCrowdControlDuration) const

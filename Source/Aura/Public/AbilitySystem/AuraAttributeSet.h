@@ -93,7 +93,7 @@ public:
 	FGameplayAttributeData CrowdControl;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, CrowdControl);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes")	// Movement Speed and CC Resistance
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Dexterity, Category = "Secondary Attributes")	// Movement Speed and CC Resistance
 	FGameplayAttributeData Dexterity;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Dexterity);
 	
@@ -121,51 +121,51 @@ public:
 	 * Secondary Attributes
 	 */
 
-    UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes")
+    UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Armor, Category = "Secondary Attributes")
 	FGameplayAttributeData Armor;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Armor);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes")
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_ArmorPenetration, Category = "Secondary Attributes")
 	FGameplayAttributeData ArmorPenetration;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, ArmorPenetration);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes")
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_BlockChance, Category = "Secondary Attributes")
 	FGameplayAttributeData BlockChance;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, BlockChance);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes")
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_CriticalHitChance, Category = "Secondary Attributes")
 	FGameplayAttributeData CriticalHitChance;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, CriticalHitChance);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes")
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_CriticalHitDamage, Category = "Secondary Attributes")
 	FGameplayAttributeData CriticalHitDamage;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, CriticalHitDamage);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes")
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_CriticalHitResistance, Category = "Secondary Attributes")
 	FGameplayAttributeData CriticalHitResistance;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, CriticalHitResistance);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes")
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_HealthRegen, Category = "Secondary Attributes")
 	FGameplayAttributeData HealthRegen;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, HealthRegen);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes")
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_ManaRegen, Category = "Secondary Attributes")
 	FGameplayAttributeData ManaRegen;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, ManaRegen);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes")
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_CooldownReduction, Category = "Secondary Attributes")
 	FGameplayAttributeData CooldownReduction;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, CooldownReduction);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes")	
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_AttackSpeed, Category = "Secondary Attributes")	
 	FGameplayAttributeData AttackSpeed;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, AttackSpeed);
 
-    UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes") // Increases the duration of crowd control effects
+    UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_CrowdControlDuration, Category = "Secondary Attributes") // Increases the duration of crowd control effects
 	FGameplayAttributeData CrowdControlDuration;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, CrowdControlDuration);
 
-    UPROPERTY(BlueprintReadOnly, Category = "Secondary Attributes") // Damage Over Time or Burn Damage
+    UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_DamageOverTime, Category = "Secondary Attributes") // Damage Over Time or Burn Damage
 	FGameplayAttributeData DamageOverTime;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, DamageOverTime);
 	

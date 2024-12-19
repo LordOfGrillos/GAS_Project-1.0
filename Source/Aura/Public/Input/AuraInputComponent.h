@@ -30,10 +30,6 @@ void UAuraInputComponent::BindAbilityActions(const UAuraInputConfig* InputConfig
 	{
 		if (Action.InputAction && Action.InputTag.IsValid())
 		{
-			if (HeldFunc)
-			{
-				BindAction(Action.InputAction, ETriggerEvent::Triggered, Object, HeldFunc, Action.InputTag);
-			}
 			if (PressedFunc)
 			{
 				BindAction(Action.InputAction, ETriggerEvent::Started, Object, PressedFunc, Action.InputTag);
@@ -41,6 +37,11 @@ void UAuraInputComponent::BindAbilityActions(const UAuraInputConfig* InputConfig
 			if (ReleasedFunc)
 			{
 				BindAction(Action.InputAction, ETriggerEvent::Completed, Object, ReleasedFunc, Action.InputTag);
+			}
+			
+			if (HeldFunc)
+			{
+				BindAction(Action.InputAction, ETriggerEvent::Triggered, Object, HeldFunc, Action.InputTag);
 			}
 		}
 	}

@@ -63,10 +63,25 @@ public:
 	FGameplayTag Damage_Arcane;
 	FGameplayTag Damage_Physical;
 
+	// Combat
+	FGameplayTag Abilities_Attack;
+	FGameplayTag Abilities_Summon;
+
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToResistances;
 	
 	// Hit React
 	FGameplayTag Effects_HitReact;
+
+	// Attack Weapons Montages
+	FGameplayTag CombatSocket_Weapon;
+	FGameplayTag CombatSocket_RightHand;
+	FGameplayTag CombatSocket_LeftHand;
+	FGameplayTag CombatSocket_Tail;
+
+	FGameplayTag Montage_Attack_1;
+	FGameplayTag Montage_Attack_2;
+	FGameplayTag Montage_Attack_3;
+	FGameplayTag Montage_Attack_4;
 protected:
 
 private:

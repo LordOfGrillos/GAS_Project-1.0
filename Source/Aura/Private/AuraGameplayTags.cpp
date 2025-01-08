@@ -183,6 +183,11 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 		FName("Abilities.Summon"),
 		FString("Tag granted for summon abilities")
 		);
+	// Aura Abilities
+	GameplayTags.Abilities_Fire_FireBolt = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Abilities.Fire.FireBolt"),
+		FString("Tag granted for fire bolt abilities")
+		);
 	
 
 	// Hit React

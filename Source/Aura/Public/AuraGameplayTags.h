@@ -67,6 +67,9 @@ public:
 	FGameplayTag Abilities_Attack;
 	FGameplayTag Abilities_Summon;
 
+	// Combat Aura
+	FGameplayTag Abilities_Fire_FireBolt;
+
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToResistances;
 	
 	// Hit React

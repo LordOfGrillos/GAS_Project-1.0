@@ -124,12 +124,16 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Meta Attributes")
 	FGameplayAttributeData IncomingDamage;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, IncomingDamage);
+
+	UPROPERTY(BlueprintReadOnly, Category = "Meta Attributes")
+	FGameplayAttributeData IncomingXP;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, IncomingXP);
 	
 	/*
 	 * Secondary Attributes
 	 */
 
-    UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Armor, Category = "Secondary Attributes")
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Armor, Category = "Secondary Attributes")
 	FGameplayAttributeData Armor;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Armor);
 
@@ -169,11 +173,11 @@ public:
 	FGameplayAttributeData AttackSpeed;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, AttackSpeed);
 
-    UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_CrowdControlDuration, Category = "Secondary Attributes") // Increases the duration of crowd control effects
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_CrowdControlDuration, Category = "Secondary Attributes") // Increases the duration of crowd control effects
 	FGameplayAttributeData CrowdControlDuration;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, CrowdControlDuration);
 
-    UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_DamageOverTime, Category = "Secondary Attributes") // Damage Over Time or Burn Damage
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_DamageOverTime, Category = "Secondary Attributes") // Damage Over Time or Burn Damage
 	FGameplayAttributeData DamageOverTime;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, DamageOverTime);
 	/*
@@ -286,4 +290,5 @@ private:
 
 	void SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props) const;
 	void ShowFloatingText(const FEffectProperties& Props, float Damage, bool bBlockedHit, bool bCriticalHit) const;
+	void SendXPEvent(const FEffectProperties& Props);
 };

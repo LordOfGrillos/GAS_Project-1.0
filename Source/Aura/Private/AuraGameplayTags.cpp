@@ -188,6 +188,15 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 		FName("Abilities.Fire.FireBolt"),
 		FString("Tag granted for fire bolt abilities")
 		);
+
+	/*
+	 * Cooldown Tags
+	 */
+	
+	GameplayTags.Cooldowns_Fire_FireBolt = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Cooldowns.Fire.FireBolt"),
+		FString("Tag granted for fire bolt cooldowns")
+		);
 	
 
 	// Hit React

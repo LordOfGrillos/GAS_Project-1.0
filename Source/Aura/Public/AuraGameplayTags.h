@@ -69,6 +69,7 @@ public:
 
 	// Combat Aura
 	FGameplayTag Abilities_Fire_FireBolt;
+	FGameplayTag Cooldowns_Fire_FireBolt;
 
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToResistances;
 	

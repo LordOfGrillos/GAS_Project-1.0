@@ -57,11 +57,11 @@ void UOverlayWidgetController::BindCallBacksToDependencies()
 	{
 		if (GetAuraASC()->bStartupAbilitiesGiven)
 		{
-			OnInitializedStartupAbilities(GetAuraASC());
+			BroadcastAbilityInfo();
 		}
 		else
 		{
-			GetAuraASC()->AbilitiesGivenDelegate.AddUObject(this, &UOverlayWidgetController::OnInitializedStartupAbilities);
+			GetAuraASC()->AbilitiesGivenDelegate.AddUObject(this, &UOverlayWidgetController::BroadcastAbilityInfo);
 		}
 		
 		GetAuraASC()->EffectAssetTags.AddLambda(
@@ -80,24 +80,6 @@ void UOverlayWidgetController::BindCallBacksToDependencies()
 			}
 		);
 	}
-}
-
-void UOverlayWidgetController::OnInitializedStartupAbilities(UAuraAbilitySystemComponent* InAuraAbilitySystemComponent)
-{
-	//TODO Get information about all given abilities, look up their ability info and broadcast to widgets
-	if (!GetAuraASC()->bStartupAbilitiesGiven) return;
-
-	FForEachAbility BroadcastDelegate;
-	BroadcastDelegate.BindLambda(
-		[this](const FGameplayAbilitySpec& AbilitySpec)
-		{
-			//TODO Need a way to get the ability info from the ability tag
-			FAuraAbilityInfo Info = AbilityInfo->FindAbilityInfoForTag(AuraAbilitySystemComponent->GetAbilityTagFromSpec(AbilitySpec));
-			Info.InputTag = AuraAbilitySystemComponent->GetInputTagFromSpec(AbilitySpec);
-			AbilityInfoDelegate.Broadcast(Info);
-		}
-	);
-	GetAuraASC()->ForEachAbility(BroadcastDelegate);
 }
 
 void UOverlayWidgetController::OnXPChanged(int32 NewXP)

@@ -16,6 +16,7 @@ class AAuraPlayerController;
 class AAuraPlayerState;
 class UAuraAbilitySystemComponent;
 class UAuraAttributeSet;
+class UAbilityInfo;
 
 USTRUCT(BlueprintType)
 struct FWidgetControllerParams
@@ -56,8 +57,12 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Messages")
 	FAbilityInfoSignature AbilityInfoDelegate;
 
+	void BroadcastAbilityInfo();
 protected:
-
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Widget Data")
+	TObjectPtr<UAbilityInfo> AbilityInfo;
+	
 	UPROPERTY(BlueprintReadOnly, Category = "Widget Controller")
 	TObjectPtr<APlayerController> PlayerController;
 	

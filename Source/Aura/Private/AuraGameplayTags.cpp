@@ -207,10 +207,21 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 		FName("Abilities.Fire.FireBolt"),
 		FString("Tag granted for fire bolt abilities")
 		);
+
+	GameplayTags.Abilities_Lightning_Electrocute = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Abilities.Lightning.Electrocute"),
+		FString("Tag granted for electrocute abilities")
+		);
+	
 	GameplayTags.Abilities_HitReact = UGameplayTagsManager::Get().AddNativeGameplayTag(
 		FName("Abilities.HitReact"),
 		FString("Tag granted for hit reactions")
 		);
+
+	/*
+	 * Ability Status
+	 */
+	
 	GameplayTags.Abilities_Status_Locked = UGameplayTagsManager::Get().AddNativeGameplayTag(
 		FName("Abilities.Status.Locked"),
 		FString("Tag granted for locked abilities")
@@ -227,6 +238,13 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 		FName("Abilities.Status.Equipped"),
 		FString("Tag granted for equipped abilities")
 		);
+	/*
+	 * Abilities Status End
+	 */
+
+	/*
+	 * AbilityTypes
+	 */
 	GameplayTags.Abilities_Type_Offensive = UGameplayTagsManager::Get().AddNativeGameplayTag(
 		FName("Abilities.Type.Offensive"),
 		FString("Tag granted for offensive abilities")
@@ -239,6 +257,9 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 		FName("Abilities.Type.None"),
 		FString("Tag granted for abilities with no type")
 		);
+	/*
+	 * Ability Types End
+	 */
 
 	/*
 	 * Cooldown Tags
